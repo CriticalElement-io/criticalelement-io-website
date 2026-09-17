@@ -1,115 +1,163 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Critical Element. Coming soon. A few critical elements are still coming together.">
-    <title>Critical Element | Coming Soon</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='white'/%3E%3Cpath d='M43 19a19 19 0 1 0 0 26' fill='none' stroke='black' stroke-width='8'/%3E%3C/svg%3E">
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #000;
-        background: #fff;
-        font-synthesis: none;
-        -webkit-font-smoothing: antialiased;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Critical Element | Grafana Partner for Observability &amp; Telemetry</title>
+  <meta name="description" content="Critical Element is a Grafana Partner and Reseller. We design, build and run Grafana observability stacks: licensing, engineering and support from one partner.">
+  <meta name="theme-color" content="#161513">
+  <link rel="canonical" href="https://criticalelement.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Critical Element">
+  <meta property="og:title" content="Critical Element | Observability that tells you what matters">
+  <meta property="og:description" content="Grafana Partner and Reseller. Licensing, design, engineering and support for observability stacks.">
+  <meta property="og:url" content="https://criticalelement.io/">
+  <meta property="og:image" content="https://criticalelement.io/assets/logo/ce-appicon-1024.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/ce-appicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ce-mark" viewBox="0 0 594 594">
+    <g fill="var(--ce-logo-tile)"><polygon points="56,0 238,0 278,40 278,180 180,278 40,278 0,238 0,56"/><polygon points="538,0 356,0 316,40 316,180 414,278 554,278 594,238 594,56"/><polygon points="56,594 238,594 278,554 278,414 180,316 40,316 0,356 0,538"/><polygon points="538,594 356,594 316,554 316,414 414,316 554,316 594,356 594,538"/></g>
+    <polygon points="297,217 377,297 297,377 217,297" fill="var(--ce-oxide)"/>
+  </symbol>
+</svg>
 
-      * { box-sizing: border-box; }
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Critical Element home"><svg viewBox="0 0 594 594" aria-hidden="true"><use href="#ce-mark"/></svg>Critical Element</a>
+    <nav aria-label="Primary"><ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#grafana">Grafana</a></li>
+      <li><a href="#process">How we work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a class="btn secondary sm" href="mailto:sales@criticalelement.io">Contact sales</a></li>
+    </ul></nav>
+    <a class="btn secondary sm cta" href="mailto:sales@criticalelement.io">Contact</a>
+  </div>
+</header>
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        min-height: 100svh;
-        padding: clamp(1.5rem, 5vw, 4rem);
-        display: grid;
-        grid-template-rows: 1fr auto;
-      }
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">Grafana Partner &amp; Reseller</span>
+        <h1>Observability that tells you what matters.</h1>
+        <p class="lede">Critical Element designs, builds, and runs Grafana stacks for teams who need signal and deep insight into their observability data. Licensing, design, engineering, and support from one partner.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:sales@criticalelement.io">Talk to sales</a>
+          <a class="btn secondary" href="#services">What we do</a>
+        </div>
+        <p class="partner">Observability &amp; telemetry</p>
+      </div>
+      <div class="hero-panel">
+        <svg viewBox="0 0 594 594" aria-hidden="true"><use href="#ce-mark"/></svg>
+        <p class="tagline">Observe · Detect<br>Analyze · Respond</p>
+      </div>
+    </div>
+  </section>
 
-      main {
-        align-self: center;
-        justify-self: center;
-        width: 100%;
-        max-width: 60rem;
-        padding: 4rem 0;
-        text-align: center;
-      }
+  <div class="ticker" aria-label="Technologies">
+    <div class="wrap"><span>Grafana</span><span>Loki</span><span>Tempo</span><span>Mimir</span><span>Pyroscope</span><span>OpenTelemetry</span><span>Prometheus</span></div>
+  </div>
 
-      .notice {
-        display: inline-block;
-        margin: 0 0 2.5rem;
-        padding: 0.75rem 1rem;
-        border: 1px solid currentColor;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 0.75rem;
-        font-weight: 700;
-        line-height: 1.5;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        transform: rotate(-3deg);
-      }
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Services</span>
+        <h2>Three ways we help.</h2>
+        <p>From design to deployment, we are there every step of the way to share our expertise.</p>
+      </div>
+      <div class="cards">
+        <article class="card chamfer">
+          <span class="eyebrow">Licensing</span>
+          <h3>Grafana Cloud &amp; Enterprise</h3>
+          <p>Buy Grafana through a partner who sizes it for your workload, handles procurement and stays on the account after the paperwork.</p>
+          <ul><li>Grafana Cloud tiers and usage</li><li>Grafana Enterprise and plugins</li><li>Renewals, growth and right-sizing</li></ul>
+        </article>
+        <article class="card chamfer">
+          <span class="eyebrow">Engineering</span>
+          <h3>Design and build</h3>
+          <p>Metrics, logs, traces and profiles on the LGTM stack, fed by the right telemetry data needed for deep insight.</p>
+          <ul><li>LGTM architecture and migration</li><li>OpenTelemetry collectors and pipelines</li><li>Dashboards, alerting and SLOs</li></ul>
+        </article>
+        <article class="card chamfer">
+          <span class="eyebrow">Operations</span>
+          <h3>Run and support</h3>
+          <p>Ongoing help for the teams who own the stack: health checks, tuning, upgrades, and training so the knowledge stays in-house.</p>
+          <ul><li>Managed Grafana and stack care</li><li>Cost and cardinality tuning</li><li>Training and runbooks</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      h1 {
-        margin: 0;
-        font-size: clamp(3.25rem, 10.5vw, 8rem);
-        font-weight: 900;
-        line-height: 0.94;
-        letter-spacing: -0.065em;
-      }
+  <section id="grafana" class="grafana">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Grafana Partner</span>
+        <h2>Same Grafana. A partner on your side.</h2>
+        <p>Buying through Critical Element gets you the same Grafana Labs products, plus people who have deployed them before and answer the phone afterward.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Products</dt><dd>Grafana Cloud, Grafana Enterprise, Grafana Enterprise Metrics, Logs and Traces.</dd></div>
+        <div><dt>Procurement</dt><dd>Quotes, sizing and paperwork handled by us. One vendor relationship, one invoice.</dd></div>
+        <div><dt>Onboarding</dt><dd>Migration and setup by engineers who run this stack, not a ticket queue.</dd></div>
+        <div><dt>After the sale</dt><dd>Direct access to the team for renewals, growth and escalations.</dd></div>
+      </dl>
+    </div>
+  </section>
 
-      h1 span { display: block; }
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How we work</span>
+        <h2>Assess, build, run.</h2>
+        <p>Every engagement starts small and earns the next step.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="num">01</span><h3>Assess</h3><p>We look at what you collect, what it costs and what nobody reads. You get a written plan with sizing and a price.</p></div>
+        <div class="step"><span class="num">02</span><h3>Build</h3><p>We implement the plan with your team in the loop: pipelines, dashboards, alerting and licensing in place.</p></div>
+        <div class="step"><span class="num">03</span><h3>Run</h3><p>We stay on as far as you want us: support, tuning, upgrades, or a clean handover with runbooks.</p></div>
+      </div>
+    </div>
+  </section>
 
-      .stripes {
-        width: 9rem;
-        height: 0.75rem;
-        margin: 2.5rem auto;
-        background: repeating-linear-gradient(
-          -55deg,
-          #000 0,
-          #000 7px,
-          #fff 7px,
-          #fff 14px
-        );
-      }
+  <section id="about" class="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">About</span>
+        <h2>Clarity in complexity.</h2>
+        <p>Critical Element is an observability and telemetry practice and a Grafana Partner. We work with engineering and platform teams who want deeper insight into their observability data.</p>
+      </div>
+    </div>
+  </section>
 
-      h2 {
-        margin: 0 0 0.75rem;
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: -0.035em;
-      }
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h2>Tell us what you need to see.</h2>
+      <p>Licensing quote, an assessment, or a second opinion on your observability stack. One address for all of it.</p>
+      <a class="mail" href="mailto:sales@criticalelement.io">sales@criticalelement.io</a>
+      <a class="btn primary" href="mailto:sales@criticalelement.io">Email sales</a>
+    </div>
+  </section>
+</main>
 
-      .description {
-        max-width: 23rem;
-        margin: 0 auto;
-        font-size: 1rem;
-        line-height: 1.6;
-        text-wrap: balance;
-      }
-
-      footer {
-        text-align: center;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 0.75rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 360px) {
-        h1 { font-size: 2.75rem; }
-        .notice { letter-spacing: 0.06em; }
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <p class="notice">Site under construction</p>
-      <h1><span>Critical</span> <span>Element.</span></h1>
-      <div class="stripes" aria-hidden="true"></div>
-      <h2>Coming soon.</h2>
-      <p class="description">A few critical elements are still coming together.</p>
-    </main>
-    <footer>Thanks for stepping around the wet cement.</footer>
-  </body>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Critical Element</span>
+    <div class="links">
+      <a href="mailto:sales@criticalelement.io">sales@criticalelement.io</a>
+    </div>
+  </div>
+</footer>
+</body>
 </html>
