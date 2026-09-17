@@ -15,6 +15,9 @@ Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branc
 - `assets/logo/` — mark, lockup and app icon SVGs plus PNG icons from the design system
 - `favicon.ico`, `apple-touch-icon.png` — favicons
 - `robots.txt`, `sitemap.xml`
+- `signature/index.html` — internal email-signature generator at https://criticalelement.io/signature/ (noindex)
+- `assets/email/` — signature logo PNGs and the raw HTML template. Append-only: every signature ever sent points at these URLs.
+- `docs/email-signature.md` — Gmail setup instructions for staff
 
 ## Brand rules in use
 
