@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Critical Element. Coming soon. A few critical elements are still coming together.">
+    <title>Critical Element | Coming Soon</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='white'/%3E%3Cpath d='M43 19a19 19 0 1 0 0 26' fill='none' stroke='black' stroke-width='8'/%3E%3C/svg%3E">
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000;
+        background: #fff;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: clamp(1.5rem, 5vw, 4rem);
+        display: grid;
+        grid-template-rows: 1fr auto;
+      }
+
+      main {
+        align-self: center;
+        justify-self: center;
+        width: 100%;
+        max-width: 60rem;
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .notice {
+        display: inline-block;
+        margin: 0 0 2.5rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid currentColor;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transform: rotate(-3deg);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(3.25rem, 10.5vw, 8rem);
+        font-weight: 900;
+        line-height: 0.94;
+        letter-spacing: -0.065em;
+      }
+
+      h1 span { display: block; }
+
+      .stripes {
+        width: 9rem;
+        height: 0.75rem;
+        margin: 2.5rem auto;
+        background: repeating-linear-gradient(
+          -55deg,
+          #000 0,
+          #000 7px,
+          #fff 7px,
+          #fff 14px
+        );
+      }
+
+      h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+      }
+
+      .description {
+        max-width: 23rem;
+        margin: 0 auto;
+        font-size: 1rem;
+        line-height: 1.6;
+        text-wrap: balance;
+      }
+
+      footer {
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.75rem;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 360px) {
+        h1 { font-size: 2.75rem; }
+        .notice { letter-spacing: 0.06em; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="notice">Site under construction</p>
+      <h1><span>Critical</span> <span>Element.</span></h1>
+      <div class="stripes" aria-hidden="true"></div>
+      <h2>Coming soon.</h2>
+      <p class="description">A few critical elements are still coming together.</p>
+    </main>
+    <footer>Thanks for stepping around the wet cement.</footer>
+  </body>
+</html>
