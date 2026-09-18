@@ -33,15 +33,15 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Critical Element home"><svg viewBox="0 0 594 594" aria-hidden="true"><use href="#ce-mark"/></svg>Critical Element</a>
+    <a class="brand" href="#top" aria-label="Critical Element home"><svg viewBox="0 0 594 594" aria-hidden="true"><use href="#ce-mark"/></svg><span class="wordmark">Critical Element</span></a>
     <nav aria-label="Primary"><ul>
       <li><a href="#services">Services</a></li>
       <li><a href="#grafana">Grafana</a></li>
       <li><a href="#process">How we work</a></li>
       <li><a href="#about">About</a></li>
-      <li><a class="btn secondary sm" href="mailto:sales@criticalelement.io">Contact sales</a></li>
+      <li><a class="btn secondary sm" href="#health-check" data-open-health-check="nav">Request a health check</a></li>
     </ul></nav>
-    <a class="btn secondary sm cta" href="mailto:sales@criticalelement.io">Contact</a>
+    <a class="btn secondary sm cta" href="#health-check" data-open-health-check="nav-mobile">Health check</a>
   </div>
 </header>
 
@@ -53,7 +53,7 @@
         <h1>Observability that tells you what matters.</h1>
         <p class="lede">Critical Element designs, builds, and runs Grafana stacks for teams who need signal and deep insight into their observability data. Licensing, design, engineering, and support from one partner.</p>
         <div class="actions">
-          <a class="btn primary" href="mailto:sales@criticalelement.io">Talk to sales</a>
+          <a class="btn primary" href="#health-check" data-open-health-check="hero">Request a health check</a>
           <a class="btn secondary" href="#services">What we do</a>
         </div>
         <p class="partner">Observability &amp; telemetry</p>
@@ -144,9 +144,12 @@
     <div class="wrap">
       <span class="eyebrow">Contact</span>
       <h2>Tell us what you need to see.</h2>
-      <p>Licensing quote, an assessment, or a second opinion on your observability stack. One address for all of it.</p>
+      <p>Start with a free health check, or write to us directly about licensing, an assessment, or a second opinion on your observability stack.</p>
       <a class="mail" href="mailto:sales@criticalelement.io">sales@criticalelement.io</a>
-      <a class="btn primary" href="mailto:sales@criticalelement.io">Email sales</a>
+      <div class="actions">
+        <a class="btn primary" href="#health-check" data-open-health-check="contact">Request a health check</a>
+        <a class="btn secondary" href="mailto:sales@criticalelement.io">Email sales</a>
+      </div>
     </div>
   </section>
 </main>
@@ -159,5 +162,36 @@
     </div>
   </div>
 </footer>
+
+<dialog id="health-check" class="hc" aria-labelledby="hc-title">
+  <div class="hc-panel chamfer">
+    <button type="button" class="hc-close" data-hc-close aria-label="Close">&times;</button>
+    <form id="hc-form" class="hc-form" novalidate data-endpoint="https://script.google.com/macros/s/AKfycbyI7lzSp2H-o8R9X4phLTHR06hpFXuJLAVpiDPu6p4wFCewUhCDXDW7J1aJdJquZFnypw/exec">
+      <span class="eyebrow">Health check</span>
+      <h2 id="hc-title">Where does your stack sit today?</h2>
+      <p class="hc-sub">Free of charge. We look at what you collect, what it costs, and what nobody reads, then hand you a written findings report. Specifics, not a pitch.</p>
+      <div class="hc-fields">
+        <label>Name<input id="hc-name" name="name" type="text" required autocomplete="name" maxlength="120"></label>
+        <label>Work email<input id="hc-email" name="email" type="email" required autocomplete="email" maxlength="200" inputmode="email"></label>
+        <label>Company<input id="hc-company" name="company" type="text" required autocomplete="organization" maxlength="120"></label>
+        <label>Grafana today<select id="hc-grafana" name="grafana"><option value="">Choose one (optional)</option><option>Grafana Cloud</option><option>Grafana Enterprise</option><option>Grafana OSS, self-hosted</option><option>Something else</option><option>Not yet</option></select></label>
+        <label class="hc-wide">What's not working today? <span>(optional)</span><textarea id="hc-message" name="message" rows="3" maxlength="2000"></textarea></label>
+        <label class="hc-hp" aria-hidden="true">Website<input id="hc-website" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <p class="hc-error" id="hc-error" role="alert" hidden></p>
+      <div class="hc-actions">
+        <button class="btn primary" id="hc-submit" type="submit">Send it</button>
+        <span class="hc-privacy">We only use this to reply about your health check.</span>
+      </div>
+    </form>
+    <div class="hc-done" hidden>
+      <span class="eyebrow">Health check</span>
+      <h2>Got it. We're on it.</h2>
+      <p>Someone on the team reads every one of these. Expect a reply within one business day.</p>
+      <button class="btn secondary" type="button" data-hc-close>Close</button>
+    </div>
+  </div>
+</dialog>
+<script src="/assets/js/health-check.js" defer></script>
 </body>
 </html>

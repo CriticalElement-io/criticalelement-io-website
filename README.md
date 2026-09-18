@@ -18,6 +18,8 @@ Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branc
 - `signature/index.html` — internal email-signature generator at https://criticalelement.io/signature/ (noindex)
 - `assets/email/` — signature logo PNGs and the raw HTML template. Append-only: every signature ever sent points at these URLs.
 - `docs/email-signature.md` — Gmail setup instructions for staff
+- `assets/js/health-check.js` — the "Request a health check" modal (the site's only JavaScript)
+- `docs/health-check-setup.md` — one-time Google Sheet + Apps Script setup for form delivery; `docs/health-check-apps-script.gs` is the script, `docs/mock-endpoint.py` a local stand-in
 
 ## Brand rules in use
 
@@ -25,7 +27,7 @@ Dark theme is the default. Oxide is the one accent moment per screen (the primar
 
 ## Contact
 
-All contact routes to sales@criticalelement.io.
+All contact routes to sales@criticalelement.io. The health check form delivers there too, via Google Sheets + Apps Script (see `docs/health-check-setup.md`).
 
 ## Local preview
 
