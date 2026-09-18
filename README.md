@@ -6,6 +6,8 @@ Company website for Critical Element, a Grafana Partner and Reseller focused on 
 
 Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branch root; `CNAME` points the custom domain at it. Pushing to `main` deploys.
 
+GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML with old CSS. Stylesheet and script links carry a `?v=N` query string; **bump `N` in every HTML file whenever you change `site.css`, `tokens.css` or `health-check.js`** so browsers fetch the new version.
+
 ## Layout
 
 - `index.html` — the homepage
