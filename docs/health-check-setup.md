@@ -26,6 +26,8 @@ Setup takes about ten minutes. Do it from a **company Google Workspace account**
 
 ## 4. Wire the site
 
+Use the plain `https://script.google.com/macros/s/<ID>/exec` form of the URL. The deploy dialog may show an `/a/macros/criticalelement.io/` variant; both work, but the plain one never prompts outside visitors to sign in.
+
 In `index.html`, find the form and paste the URL into `data-endpoint`:
 
 ```html
