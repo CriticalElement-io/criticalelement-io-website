@@ -21,6 +21,15 @@ If the button says copy was blocked, click inside the white preview box, press *
 
 Send yourself a test email to confirm it looks right.
 
+## Updating a signature you already have
+
+When the design changes, rebuild it once:
+
+1. Open **https://criticalelement.io/signature/**, fill in your details, click **Copy signature**.
+2. Gmail → gear → **See all settings** → **General** → **Signature**. Click your **Critical Element** signature.
+3. Click inside the editor, press **Cmd+A** (Ctrl+A) to select the old one, then paste (**Cmd+V** / **Ctrl+V**).
+4. Scroll down and click **Save Changes**.
+
 ## Phones and tablets
 
 The Gmail mobile apps don't use your web signature and can't show images. Set a plain-text signature there instead:
