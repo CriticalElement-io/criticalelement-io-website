@@ -98,23 +98,23 @@
 (function(){
   var $=function(id){return document.getElementById(id)};
   var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-  function row(text,color){return text?'<div style="font-size:14px;line-height:20px;color:'+color+';">'+text+'</div>':''}
+  var SEP='<span style="color:#878681;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>';
   function build(){
     var name=esc($('f-name').value.trim()||'Your Name');
     var title=esc($('f-title').value.trim());
     var email=esc($('f-email').value.trim());
     var phone=esc($('f-phone').value.trim());
-    var emailRow=email?'<div style="font-size:14px;line-height:20px;"><a href="mailto:'+email+'" style="color:#161513;text-decoration:none;">'+email+'</a></div>':'';
+    var contact=['<a href="https://criticalelement.io" style="color:#B8461F;text-decoration:none;">CriticalElement.io</a>'];
+    if(email) contact.push('<a href="mailto:'+email+'" style="color:#161513;text-decoration:none;">'+email+'</a>');
+    if(phone) contact.push('<span style="color:#161513;">'+phone+'</span>');
     return '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">'+
       '<tr>'+
-      '<td valign="middle" style="padding:0 20px 0 0;"><a href="https://criticalelement.io" style="text-decoration:none;"><img src="https://criticalelement.io/assets/email/ce-mark-black-128.png" width="64" height="64" alt="Critical Element" style="display:block;width:64px;height:64px;border:0;"></a></td>'+
+      '<td valign="middle" style="padding:0 14px 0 0;"><a href="https://criticalelement.io" style="text-decoration:none;"><img src="https://criticalelement.io/assets/email/ce-mark-black-128.png" width="44" height="44" alt="Critical Element" style="display:block;width:44px;height:44px;border:0;"></a></td>'+
       '<td width="2" bgcolor="#E26738" style="width:2px;background-color:#E26738;font-size:0;line-height:0;">&nbsp;</td>'+
-      '<td valign="middle" style="padding:0 0 0 20px;">'+
-      '<div style="font-size:18px;line-height:24px;font-weight:bold;color:#161513;">'+name+'</div>'+
-      row(title,'#54534E')+
-      '<div style="font-size:14px;line-height:20px;padding-top:10px;"><a href="https://criticalelement.io" style="color:#B8461F;text-decoration:none;">CriticalElement.io</a></div>'+
-      emailRow+
-      row(phone,'#161513')+
+      '<td valign="middle" style="padding:0 0 0 14px;">'+
+      '<div style="font-size:14px;line-height:18px;font-weight:bold;color:#161513;">'+name+'</div>'+
+      (title?'<div style="font-size:13px;line-height:18px;color:#54534E;">'+title+'</div>':'')+
+      '<div style="font-size:13px;line-height:18px;color:#161513;">'+contact.join(SEP)+'</div>'+
       '</td></tr></table>';
   }
   function render(){ $('preview').innerHTML=build(); }
