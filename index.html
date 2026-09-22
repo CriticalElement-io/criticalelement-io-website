@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=2">
-  <link rel="stylesheet" href="/assets/css/site.css?v=2">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=3">
+  <link rel="stylesheet" href="/assets/css/site.css?v=3">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -56,7 +56,7 @@
           <a class="btn primary" href="#health-check" data-open-health-check="hero">Request a health check</a>
           <a class="btn secondary" href="#services">What we do</a>
         </div>
-        <p class="partner">Observability &amp; telemetry</p>
+        <p class="partner">Built by people with 15+ years in observability</p>
       </div>
       <div class="hero-panel">
         <svg viewBox="0 0 594 594" aria-hidden="true"><use href="#ce-mark"/></svg>
@@ -79,15 +79,15 @@
       <div class="cards">
         <article class="card chamfer">
           <span class="eyebrow">Licensing</span>
-          <h3>Grafana Cloud &amp; Enterprise</h3>
+          <h3>Grafana Cloud licensing and sizing</h3>
           <p>Buy Grafana through a partner who sizes it for your workload, handles procurement and stays on the account after the paperwork.</p>
-          <ul><li>Grafana Cloud tiers and usage</li><li>Grafana Enterprise and plugins</li><li>Renewals, growth and right-sizing</li></ul>
+          <ul><li>Grafana Cloud tiers and usage planning</li><li>Grafana Enterprise for on-premises requirements</li><li>Renewals, growth and right-sizing</li></ul>
         </article>
         <article class="card chamfer">
           <span class="eyebrow">Engineering</span>
           <h3>Design and build</h3>
-          <p>Metrics, logs, traces and profiles on the LGTM stack, fed by the right telemetry data needed for deep insight.</p>
-          <ul><li>LGTM architecture and migration</li><li>OpenTelemetry collectors and pipelines</li><li>Dashboards, alerting and SLOs</li></ul>
+          <p>Metrics, logs, traces and profiles on the Grafana LGTM Stack (Loki for logs, Grafana for visualization, Tempo for traces, Mimir for metrics), fed by the telemetry data you need for deep insight.</p>
+          <ul><li>Architecture design and migration</li><li>OpenTelemetry collectors and pipelines</li><li>Dashboards, alerting and SLOs</li></ul>
         </article>
         <article class="card chamfer">
           <span class="eyebrow">Operations</span>
@@ -95,6 +95,10 @@
           <p>Ongoing help for the teams who own the stack: health checks, tuning, upgrades, and training so the knowledge stays in-house.</p>
           <ul><li>Managed Grafana and stack care</li><li>Cost and cardinality tuning</li><li>Training and runbooks</li></ul>
         </article>
+      </div>
+      <div class="mid-cta">
+        <p>Not sure which one you need? That's what the health check is for.</p>
+        <a class="btn primary" href="#health-check" data-open-health-check="services">Start with a free health check</a>
       </div>
     </div>
   </section>
@@ -107,11 +111,26 @@
         <p>Buying through Critical Element gets you the same Grafana Labs products, plus people who have deployed them before and answer the phone afterward.</p>
       </div>
       <dl class="facts">
-        <div><dt>Products</dt><dd>Grafana Cloud, Grafana Enterprise, Grafana Enterprise Metrics, Logs and Traces.</dd></div>
+        <div><dt>Products</dt><dd>Grafana Cloud (Metrics, Logs, Traces, Profiles) and Grafana Enterprise.</dd></div>
         <div><dt>Procurement</dt><dd>Quotes, sizing and paperwork handled by us. One vendor relationship, one invoice.</dd></div>
         <div><dt>Onboarding</dt><dd>Migration and setup by engineers who run this stack, not a ticket queue.</dd></div>
         <div><dt>After the sale</dt><dd>Direct access to the team for renewals, growth and escalations.</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <section id="open">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Open by design</span>
+        <h2>Open standards. Your data stays yours.</h2>
+        <p>We build on open source and open standards on purpose. It's the difference between owning your observability and renting it.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><h3>No lock-in</h3><p>Your telemetry lives in open formats on open-source components. Change tools, change vendors, or bring it in-house without leaving your data behind.</p></div>
+        <div class="pillar"><h3>Standards-based</h3><p>OpenTelemetry for collection, Prometheus for metrics. Instrument once and every tool that speaks the standard can read it, now and later.</p></div>
+        <div class="pillar"><h3>Community-backed</h3><p>Grafana, Loki, Tempo and Mimir are open source with large communities behind them. Whatever you hit, someone has hit it before, and the fix is public.</p></div>
+      </div>
     </div>
   </section>
 
@@ -135,7 +154,7 @@
       <div class="sec-head">
         <span class="eyebrow">About</span>
         <h2>Clarity in complexity.</h2>
-        <p>Critical Element is an observability and telemetry practice and a Grafana Partner. We work with engineering and platform teams who want deeper insight into their observability data.</p>
+        <p>Critical Element is an observability and telemetry practice and a Grafana Partner, built by people who have spent 15+ years in observability across Grafana, Splunk, Cribl and AppDynamics. We work with engineering and platform teams who want deeper insight into their observability data, on open standards like OpenTelemetry and Prometheus, so your data stays yours.</p>
       </div>
     </div>
   </section>
@@ -192,6 +211,6 @@
     </div>
   </div>
 </dialog>
-<script src="/assets/js/health-check.js?v=2" defer></script>
+<script src="/assets/js/health-check.js?v=3" defer></script>
 </body>
 </html>
