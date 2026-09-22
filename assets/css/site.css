@@ -68,6 +68,17 @@ section{padding-block:80px}
 .card ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--ce-line-strong);transform:rotate(45deg)}
 @media (max-width:900px){.cards{grid-template-columns:1fr}}
 
+/* mid-page CTA under the service cards */
+.mid-cta{display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;margin-top:32px;padding-top:28px;border-top:1px solid var(--ce-line)}
+.mid-cta p{color:var(--ce-ink-2);font-size:16px;max-width:48ch}
+
+/* open standards pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.pillar{border-left:2px solid var(--ce-secondary);padding:4px 0 4px 18px;display:grid;gap:10px;align-content:start}
+.pillar h3{font-size:20px;font-weight:600}
+.pillar p{color:var(--ce-ink-2);font-size:15px}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+
 /* grafana strip */
 .grafana{background:var(--ce-surface);border-block:1px solid var(--ce-line)}
 .grafana .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
