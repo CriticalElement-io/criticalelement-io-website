@@ -14,16 +14,20 @@
   --ce-font-display:"Saira","Helvetica Neue",Arial,sans-serif;
   --ce-font-body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
   --ce-font-mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --font-display:var(--ce-font-display); --font-body:var(--ce-font-body); --font-mono:var(--ce-font-mono); /* aliases used by design-system previews */
   --ce-tracking-wordmark:.28em; --ce-tracking-eyebrow:.14em; --ce-tracking-tagline:.30em;
   --ce-text-xs:11px; --ce-text-sm:13px; --ce-text-md:15px; --ce-text-lg:18px; --ce-text-xl:24px; --ce-text-2xl:32px; --ce-text-3xl:42px; --ce-text-4xl:56px;
 
   /* radius + space */
-  --ce-radius-sm:4px; --ce-radius-md:6px; --ce-radius-lg:10px;
+  --ce-radius-sm:4px; --ce-radius-md:6px; --ce-radius-lg:10px; --ce-chamfer:16px; --ce-chamfer-lg:24px;
   --ce-space-1:4px; --ce-space-2:8px; --ce-space-3:12px; --ce-space-4:16px; --ce-space-5:24px; --ce-space-6:32px; --ce-space-7:48px; --ce-space-8:64px; --ce-space-9:96px;
+
+  /* layout */
+  --ce-content-max:1120px; --ce-gutter:20px; --ce-nav-height:64px; --ce-lede-max:680px; --ce-facts-label:150px; --ce-hero-mark:260px;
 
   /* semantic — dark (default) */
   --ce-bg:var(--ce-black); --ce-surface:var(--ce-n900); --ce-surface-2:var(--ce-charcoal);
-  --ce-line:var(--ce-charcoal); --ce-line-strong:var(--ce-n700);
+  --ce-line:var(--ce-charcoal); --ce-line-strong:var(--ce-n700); --ce-line-control:var(--ce-field-grey);
   --ce-ink:var(--ce-n100); --ce-ink-2:var(--ce-n300); --ce-muted:var(--ce-field-grey);
   --ce-accent:var(--ce-oxide); --ce-on-accent:var(--ce-black);
   --ce-secondary:var(--ce-blue); --ce-on-secondary:var(--ce-black);
@@ -32,7 +36,7 @@
 }
 :root[data-theme="light"]{
   --ce-bg:var(--ce-stone); --ce-surface:#FFFFFF; --ce-surface-2:var(--ce-n100);
-  --ce-line:var(--ce-khaki); --ce-line-strong:var(--ce-n300);
+  --ce-line:var(--ce-khaki); --ce-line-strong:var(--ce-n300); --ce-line-control:var(--ce-n700);
   --ce-ink:var(--ce-n900); --ce-ink-2:var(--ce-n700); --ce-muted:var(--ce-field-grey);
   --ce-accent:var(--ce-oxide-deep); --ce-on-accent:#FFFFFF;
   --ce-secondary:var(--ce-blue-deep); --ce-on-secondary:#FFFFFF;
