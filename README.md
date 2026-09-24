@@ -12,7 +12,7 @@ GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML wit
 
 - `index.html` — the homepage
 - `404.html` — not-found page served by GitHub Pages
-- `assets/css/tokens.css` — design tokens, copied verbatim from the [CE design system](https://github.com/cwall75/ce-design-system) (`tokens/tokens.css`). Edit it there, then copy here.
+- `assets/css/tokens.css` — design tokens, copied verbatim from the [CE design system](https://github.com/CriticalElement-io/ce-design-system) (`tokens/tokens.css`). Edit it there, then copy here.
 - `assets/css/site.css` — page styles, built on the tokens
 - `assets/logo/` — mark, lockup and app icon SVGs plus PNG icons from the design system
 - `favicon.ico`, `apple-touch-icon.png` — favicons
