@@ -21,6 +21,8 @@ GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML wit
 - `assets/email/` — signature logo PNGs and the raw HTML template. Append-only: every signature ever sent points at these URLs.
 - `docs/email-signature.md` — Gmail setup instructions for staff
 - `assets/js/health-check.js` — the "Request a health check" modal (the site's only JavaScript)
+- `careers/` — careers index and one folder per open role; `assets/js/apply.js` is the application modal
+- `docs/careers-setup.md` — application form backend (separate Sheet + Apps Script with resume upload to Drive), adding and closing roles; `docs/careers-apps-script.gs` is the script
 - `docs/health-check-setup.md` — one-time Google Sheet + Apps Script setup for form delivery; `docs/health-check-apps-script.gs` is the script, `docs/mock-endpoint.py` a local stand-in
 
 ## Brand rules in use
