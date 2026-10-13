@@ -48,12 +48,18 @@
     var wasOpen = nav.classList.contains('menu-open');
     closeSubs();
     if (wasOpen) setMenu(false);
-    // Same-page anchor while the panel was open: the browser's fragment jump would run against the
-    // scroll lock and go nowhere, so release the lock first and jump on the next frame.
+    // Same-page anchor: scroll it ourselves after the menu has closed and the scroll lock is gone,
+    // rather than relying on the fragment jump, which can fire against a still-locked page.
     var url = new URL(a.href, location.href);
-    if (wasOpen && url.hash && url.pathname === location.pathname) {
-      e.preventDefault();
-      window.requestAnimationFrame(function () { location.hash = url.hash; });
+    if (url.hash && url.pathname === location.pathname) {
+      var target = document.getElementById(url.hash.slice(1));
+      if (target) {
+        e.preventDefault();
+        window.requestAnimationFrame(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (history.pushState) history.pushState(null, '', url.hash);
+        });
+      }
     }
   });
 

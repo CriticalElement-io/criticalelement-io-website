@@ -85,7 +85,7 @@ p{margin:0}
 @media (max-width:760px){.ticker .wrap{gap:14px 24px;justify-content:flex-start}}
 
 /* sections */
-section{padding-block:80px}
+section{padding-block:80px;scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
 @media (max-width:760px){section{padding-block:56px}}
 .sec-head{display:grid;gap:14px;max-width:680px;margin-bottom:40px}
 .sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:600}
