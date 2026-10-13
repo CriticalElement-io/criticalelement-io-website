@@ -52,6 +52,11 @@
   }
   function escapeHtml(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
+  // Arriving with #health-check in the URL (the nav button on other pages) opens the modal.
+  if (location.hash === '#health-check') {
+    open('link');
+    if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+  }
   // openers
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-open-health-check]');

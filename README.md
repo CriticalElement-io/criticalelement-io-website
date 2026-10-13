@@ -6,11 +6,12 @@ Company website for Critical Element, a Grafana Partner and Reseller focused on 
 
 Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branch root; `CNAME` points the custom domain at it. Pushing to `main` deploys.
 
-GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML with old CSS. Stylesheet and script links carry a `?v=N` query string; **bump `N` in every HTML file whenever you change `site.css`, `tokens.css` or `health-check.js`** so browsers fetch the new version.
+GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML with old CSS. Stylesheet and script links carry a `?v=N` query string; run `python3 tools/chrome.py --bump` whenever you change CSS or JS so browsers fetch the new version.
 
 ## Layout
 
 - `index.html` — the homepage
+- `ai-observability/` — AI Observability services page
 - `404.html` — not-found page served by GitHub Pages
 - `assets/css/tokens.css` — design tokens, copied verbatim from the [CE design system](https://github.com/CriticalElement-io/ce-design-system) (`tokens/tokens.css`). Edit it there, then copy here.
 - `assets/css/site.css` — page styles, built on the tokens
@@ -24,6 +25,18 @@ GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML wit
 - `careers/` — careers index and one folder per open role; `assets/js/apply.js` is the application modal
 - `docs/careers-setup.md` — application form backend (separate Sheet + Apps Script with resume upload to Drive), adding and closing roles; `docs/careers-apps-script.gs` is the script
 - `docs/health-check-setup.md` — one-time Google Sheet + Apps Script setup for form delivery; `docs/health-check-apps-script.gs` is the script, `docs/mock-endpoint.py` a local stand-in
+
+## Shared chrome and the tools script
+
+The nav, footer, and health check modal are identical on every page. Their source lives in `tools/partials/`, and `tools/chrome.py` stamps them into each page between `<!-- nav:start -->` / `<!-- nav:end -->` style markers. Deploys stay plain static files; the script is a maintenance tool, not a build step.
+
+```bash
+python3 tools/chrome.py          # after editing a partial
+python3 tools/chrome.py --bump   # after changing CSS or JS: bumps ?v=N on every page
+python3 tools/chrome.py --check  # verify every page is in sync (no writes)
+```
+
+Adding a page: copy an existing one, keep the three marker pairs (drop the health-check pair if the page shouldn't carry the modal), run the script.
 
 ## Brand rules in use
 
