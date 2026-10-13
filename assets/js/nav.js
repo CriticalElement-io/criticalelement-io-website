@@ -43,9 +43,18 @@
 
   // Choosing a link closes the menu, so same-page anchors don't leave the panel or dropdown open.
   nav.querySelector('.menu').addEventListener('click', function (e) {
-    if (!e.target.closest('a')) return;
+    var a = e.target.closest('a');
+    if (!a) return;
+    var wasOpen = nav.classList.contains('menu-open');
     closeSubs();
-    if (nav.classList.contains('menu-open')) setMenu(false);
+    if (wasOpen) setMenu(false);
+    // Same-page anchor while the panel was open: the browser's fragment jump would run against the
+    // scroll lock and go nowhere, so release the lock first and jump on the next frame.
+    var url = new URL(a.href, location.href);
+    if (wasOpen && url.hash && url.pathname === location.pathname) {
+      e.preventDefault();
+      window.requestAnimationFrame(function () { location.hash = url.hash; });
+    }
   });
 
   document.addEventListener('keydown', function (e) {
