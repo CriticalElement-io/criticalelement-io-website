@@ -258,7 +258,7 @@ body:has(.hc[open]){overflow:hidden}
 .pillar-card li{padding-left:16px;position:relative;color:var(--ce-ink-2);font-size:14.5px}
 .pillar-card li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--ce-line-strong)}
 @media (max-width:900px){.pillars-3{grid-template-columns:1fr}}
-.deliverables{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ce-line);border-bottom:1px solid var(--ce-line)}
+.deliverables{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px;border-top:1px solid var(--ce-line);border-bottom:1px solid var(--ce-line)}
 .deliverables div{padding:22px 20px 22px 0;border-right:1px solid var(--ce-line);display:grid;gap:6px;align-content:start}
 .deliverables div+div{padding-left:20px}
 .deliverables div:last-child{border-right:0}
