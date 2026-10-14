@@ -17,10 +17,23 @@
   var SALES = 'sales@criticalelement.io';
   var MIN_HUMAN_MS = 2000;
 
-  function open(src) {
+  var copy = {
+    eyebrow: dlg.querySelector('.hc-form .eyebrow'),
+    title: document.getElementById('hc-title'),
+    sub: dlg.querySelector('.hc-sub'),
+    doneEyebrow: dlg.querySelector('.hc-done .eyebrow')
+  };
+  var defaults = { eyebrow: copy.eyebrow.textContent, title: copy.title.textContent, sub: copy.sub.textContent, doneEyebrow: copy.doneEyebrow.textContent };
+  function open(src, variant) {
     source = src || '';
     openedAt = Date.now();
     reset();
+    // An opener can carry its own copy (data-hc-eyebrow / -title / -sub), e.g. the AI assessment ask.
+    variant = variant || {};
+    copy.eyebrow.textContent = variant.eyebrow || defaults.eyebrow;
+    copy.title.textContent = variant.title || defaults.title;
+    copy.sub.textContent = variant.sub || defaults.sub;
+    copy.doneEyebrow.textContent = variant.eyebrow || defaults.doneEyebrow;
     if (native) { if (!dlg.open) dlg.showModal(); } else { dlg.setAttribute('open', ''); }
     window.setTimeout(function () { f.name.focus(); }, 0);
   }
@@ -62,7 +75,7 @@
     var t = e.target.closest('[data-open-health-check]');
     if (!t) return;
     e.preventDefault();
-    open(t.getAttribute('data-open-health-check'));
+    open(t.getAttribute('data-open-health-check'), { eyebrow: t.getAttribute('data-hc-eyebrow'), title: t.getAttribute('data-hc-title'), sub: t.getAttribute('data-hc-sub') });
   });
   // closers: X, done button, backdrop click (the dialog itself covers the viewport), Escape (native 'cancel')
   Array.prototype.forEach.call(dlg.querySelectorAll('[data-hc-close]'), function (b) { b.addEventListener('click', close); });
