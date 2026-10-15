@@ -2,6 +2,8 @@
 
 Company website for Critical Element, a Grafana Partner and Reseller focused on observability and telemetry.
 
+**Working on this repo?** Read [`AGENTS.md`](AGENTS.md) first (people and AI agents alike). Project history, decisions and account ownership are in [`docs/handoff.md`](docs/handoff.md).
+
 ## Stack
 
 Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branch root; `CNAME` points the custom domain at it. Pushing to `main` deploys.
