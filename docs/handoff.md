@@ -22,13 +22,13 @@ Things that live outside this repo and who owns them. Confirm each when migratin
 | Hosting | GitHub Pages, `main` branch root | Custom domain via `CNAME`, HTTPS enforced. DNS A records point at GitHub's Pages IPs; `www` is a CNAME. |
 | Domain | criticalelement.io | Registrar/DNS not managed from this repo. |
 | Design system | `CriticalElement-io/ce-design-system` (private) | Source of `assets/css/tokens.css` and all logo files. Moved from `cwall75/ce-design-system` in Sept 2026. |
-| Health check backend | Google Sheet "Health check requests" + bound Apps Script, deployed as web app | Owned by the Workspace account that deployed it. Mail goes to sales@. Script source: `docs/health-check-apps-script.gs`. |
-| Applications backend | Google Sheet "Applications" + bound Apps Script + Drive folder "Applications - Resumes" | Separate from health check by design (candidate PII). Mail goes to hr@. Script source: `docs/careers-apps-script.gs`. |
+| Health check backend | Google Sheet "Health check requests" + bound Apps Script, deployed as web app | Deployed from cory@criticalelement.io in the company Workspace. Mail goes to sales@. Script source: `docs/health-check-apps-script.gs`. |
+| Applications backend | Google Sheet "Applications" + bound Apps Script + Drive folder "Applications - Resumes" | Deployed from cory@criticalelement.io in the company Workspace. Separate from health check by design (candidate PII). Mail goes to hr@. Script source: `docs/careers-apps-script.gs`. |
 | Email aliases | `sales@criticalelement.io`, `hr@criticalelement.io` (routes to Cory and Tim) | Google Workspace. |
 | Email signature assets | `assets/email/` on the live site | Append-only. Every signature sent points at these URLs. |
 | Homepage mockup | https://claude.ai/artifact/4ZApUxtWivKZe3cm2uhNvT | Cory's personal Claude account. Historical; the live site supersedes it. |
 
-Migration checklist: re-deploy or transfer both Apps Script projects from the company Workspace account if they were deployed from a personal one (the web app URLs change on a fresh deployment; update `data-endpoint` on the forms). Share the two Sheets and the Drive folder with the people who review leads and candidates.
+Migration checklist: both Apps Script projects were deployed from the company Workspace account from the start (confirmed 2026-10-15), so no redeploy is needed and the `data-endpoint` URLs stay as they are. If either is ever redeployed fresh, its web app URL changes; update `data-endpoint` on the forms. Share the two Sheets and the Drive folder with the people who review leads and candidates.
 
 ## History (PRs, in order)
 
