@@ -24,6 +24,7 @@ If you edited CSS or JavaScript, run `python3 tools/chrome.py --bump` before com
 | `careers/index.html`, `careers/<role>/index.html` | Careers index and one page per open role, each with Google Jobs JSON-LD |
 | `signature/index.html` | Internal email-signature generator (noindex) |
 | `404.html`, `robots.txt`, `sitemap.xml`, `CNAME` | Pages plumbing. Add new public pages to the sitemap |
+| `_config.yml` | Keeps `docs/`, `tools/`, `README.md`, `AGENTS.md` and `CLAUDE.md` off the live site. Add any new repo-only file or folder to its `exclude` list |
 | `assets/css/tokens.css` | Design tokens, **copied verbatim** from the design system repo. Edit there, then copy here |
 | `assets/css/site.css` | All page styles, written against the `--ce-*` tokens |
 | `assets/js/nav.js` | Navigation: dropdowns, phone panel, keyboard, current-page marking |

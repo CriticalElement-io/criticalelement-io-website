@@ -1,0 +1,8 @@
+# GitHub Pages runs Jekyll over this repo. The site itself needs no processing;
+# this file only keeps repo-maintenance files off https://criticalelement.io.
+exclude:
+  - docs/
+  - tools/
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md

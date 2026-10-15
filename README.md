@@ -6,7 +6,7 @@ Company website for Critical Element, a Grafana Partner and Reseller focused on 
 
 ## Stack
 
-Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branch root; `CNAME` points the custom domain at it. Pushing to `main` deploys.
+Static HTML and CSS, no build step. Hosted on GitHub Pages from the `main` branch root; `CNAME` points the custom domain at it. Pushing to `main` deploys. `_config.yml` excludes `docs/`, `tools/` and the agent docs from what Pages publishes.
 
 GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML with old CSS. Stylesheet and script links carry a `?v=N` query string; run `python3 tools/chrome.py --bump` whenever you change CSS or JS so browsers fetch the new version.
 
