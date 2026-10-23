@@ -20,8 +20,10 @@ Both roles are US-only with no visa sponsorship. The form asks both questions an
 
 ## Limits
 
-- Resumes: PDF only, 5 MB max. Larger files are refused in the browser with a message.
+- Resumes: PDF only, 5 MB max. Larger files are refused in the browser with a message. The browser and the script both check for the `%PDF-` signature in the first 1 KB, so a renamed Word file or anything else is refused and never reaches Drive.
 - Bot filters: honeypot, too-fast check (3 s), 3 submissions per email per hour.
+- Site-wide cap: 20 applications per hour (`MAX_PER_HOUR_SITEWIDE`). Past that the script answers `busy` and candidates see the email fallback until the hour rolls over, so a flood can't fill Drive or drain the mail quota.
+- Sheet safety: values starting with `=`, `+`, `-` or `@` are stored with a leading apostrophe so they stay text. A submitted formula can't run or send candidate data anywhere when someone opens the Sheet.
 - Mail quota: 1,500/day on Workspace. Not a concern.
 
 ## Adding a role

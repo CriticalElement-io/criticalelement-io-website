@@ -65,6 +65,15 @@
       r.readAsDataURL(file);
     });
   }
+  // Real PDFs carry %PDF- in their first 1024 bytes. The script checks too; this just gives a clearer message.
+  function looksLikePdf(file) {
+    return new Promise(function (resolve) {
+      var r = new FileReader();
+      r.onload = function () { resolve(String.fromCharCode.apply(null, new Uint8Array(r.result)).indexOf('%PDF-') !== -1); };
+      r.onerror = function () { resolve(false); };
+      r.readAsArrayBuffer(file.slice(0, 1024));
+    });
+  }
 
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-open-apply]');
@@ -108,7 +117,11 @@
     if (!endpoint) { fail(payload); return; }
 
     setSending(true);
-    var start = file ? readFile(file).then(function (b64) { payload.resume = { name: file.name, type: 'application/pdf', size: file.size, data: b64 }; }) : Promise.resolve();
+    var notPdf = new Error('not a pdf');
+    var start = file ? looksLikePdf(file).then(function (isPdf) {
+      if (!isPdf) throw notPdf;
+      return readFile(file);
+    }).then(function (b64) { payload.resume = { name: file.name, type: 'application/pdf', size: file.size, data: b64 }; }) : Promise.resolve();
     start.then(function () {
       var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
       var timer = ctrl && window.setTimeout(function () { ctrl.abort(); }, 45000);
@@ -127,6 +140,12 @@
           if (j && j.ok === false) throw new Error(j.error || 'rejected');
         });
       });
-    }).then(function () { show(done); done.querySelector('.btn').focus(); }, function () { fail(payload); });
+    }).then(function () { show(done); done.querySelector('.btn').focus(); }, function (err) {
+      if (err !== notPdf) { fail(payload); return; }
+      setSending(false);
+      f.resume.setAttribute('aria-invalid', 'true');
+      showError('That file isn’t a PDF. Please export your resume as a PDF and try again.');
+      f.resume.focus();
+    });
   });
 })();
