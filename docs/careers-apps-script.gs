@@ -11,6 +11,7 @@ var NOTIFY_TO = 'hr@criticalelement.io';
 var RESUME_FOLDER_NAME = 'Applications - Resumes';
 var MIN_HUMAN_MS = 3000;
 var MAX_PER_HOUR_PER_EMAIL = 3;
+var MAX_PER_HOUR_SITEWIDE = 20; // past this the visitor gets the email fallback, so floods can't fill Drive or drain the mail quota
 var MAX_RESUME_BYTES = 5 * 1024 * 1024;
 
 function doGet() {
@@ -33,15 +34,19 @@ function doPost(e) {
     if (inUS !== 'Yes' || sponsorship !== 'No') return fail('ineligible');
     if (overLimit(email)) return ok();
 
-    var resumeUrl = '';
+    var resumeBytes = null;
     if (d.resume && d.resume.data) {
-      resumeUrl = saveResume(d.resume, name, role);
+      resumeBytes = decodeResume(d.resume.data);
+      if (!resumeBytes) return fail('resume');
     }
+    if (overSitewideLimit()) return fail('busy');
+
+    var resumeUrl = resumeBytes ? saveResume(resumeBytes, name, role) : '';
 
     var lock = LockService.getScriptLock();
     lock.waitLock(10000);
     try {
-      getSheet().appendRow([new Date(), role, name, email, linkedin, resumeUrl, inUS, sponsorship, note, page, 'New']);
+      getSheet().appendRow([new Date()].concat([role, name, email, linkedin].map(sheetSafe), [resumeUrl, inUS, sponsorship, sheetSafe(note), sheetSafe(page), 'New']));
     } finally {
       lock.releaseLock();
     }
@@ -76,9 +81,23 @@ function doPost(e) {
   }
 }
 
-function saveResume(resume, name, role) {
-  var bytes = Utilities.base64Decode(String(resume.data));
-  if (bytes.length > MAX_RESUME_BYTES) throw new Error('resume too large');
+// Returns the decoded bytes, or null if the upload is too large or isn't a PDF.
+// Real PDFs carry the %PDF- signature within their first 1024 bytes; a renamed .docx or .exe does not.
+function decodeResume(data) {
+  data = String(data);
+  if (data.length > Math.ceil(MAX_RESUME_BYTES / 3) * 4) return null;
+  var bytes = Utilities.base64Decode(data);
+  if (bytes.length > MAX_RESUME_BYTES) return null;
+  var sig = [37, 80, 68, 70, 45]; // %PDF-
+  var end = Math.min(bytes.length, 1024) - sig.length;
+  for (var i = 0; i <= end; i++) {
+    for (var j = 0; j < sig.length && bytes[i + j] === sig[j]; j++) {}
+    if (j === sig.length) return bytes;
+  }
+  return null;
+}
+
+function saveResume(bytes, name, role) {
   var stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
   var safe = function (s) { return String(s).replace(/[^\w .()-]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60); };
   var blob = Utilities.newBlob(bytes, 'application/pdf', stamp + ' ' + safe(name) + ' - ' + safe(role) + '.pdf');
@@ -110,9 +129,23 @@ function overLimit(email) {
   return n > MAX_PER_HOUR_PER_EMAIL;
 }
 
+function overSitewideLimit() {
+  var cache = CacheService.getScriptCache();
+  var key = 'apply:all:' + Math.floor(Date.now() / 3600000);
+  var n = Number(cache.get(key) || 0) + 1;
+  cache.put(key, String(n), 3600);
+  return n > MAX_PER_HOUR_SITEWIDE;
+}
+
 // Strip ASCII control characters (keeps newlines and tabs), trim, cap length.
 function clean(v, max) {
   return String(v == null ? '' : v).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').trim().slice(0, max);
+}
+
+// Sheets turns a string starting with = + - @ into a formula. A leading apostrophe stores it as text
+// (shown only in the formula bar), so a submitted =IMPORTXML(...) can't run when someone opens the Sheet.
+function sheetSafe(v) {
+  return /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
 }
 
 function ok() { return json({ ok: true }); }

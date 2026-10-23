@@ -43,6 +43,9 @@ Edit the code in the Apps Script editor, then **Deploy → Manage deployments �
 ## Limits
 
 - Google Workspace mail quota is 1,500 messages per day per account. Consumer Gmail is 100. Either is plenty.
+- Bot filters: honeypot, too-fast check (2 s), 5 submissions per email per hour (extras are dropped silently).
+- Site-wide cap: 30 requests per hour (`MAX_PER_HOUR_SITEWIDE`). Past that the script answers `busy` and visitors see the email fallback until the hour rolls over, so a flood can't drain the mail quota. Raise it in the script if real traffic ever gets close.
+- Sheet safety: values starting with `=`, `+`, `-` or `@` are stored with a leading apostrophe so they stay text. A submitted formula such as `=IMPORTXML(...)` can't run when someone opens the Sheet. The email shows the text as typed.
 - Apps Script executions take a few seconds. The button shows "Sending…" and the page waits up to 15 seconds before offering the email fallback.
 
 ## Moving to Zapier later
