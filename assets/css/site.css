@@ -140,14 +140,15 @@ section{padding-block:80px;scroll-margin-top:calc(64px + env(safe-area-inset-top
 .contact h2{font-size:clamp(28px,3.6vw,44px);font-weight:600;max-width:20ch}
 .contact p{color:var(--ce-ink-2);font-size:17px;max-width:56ch}
 .contact .mail{font:500 clamp(18px,2.6vw,26px)/1.3 var(--ce-font-mono);color:var(--ce-ink);word-break:break-all}
-.contact address{margin:0;font-style:normal;font:400 15px/1.55 var(--ce-font-body);color:var(--ce-ink-2);max-width:46ch}
+.contact-details{display:grid;gap:10px;justify-items:start}
+.contact address{margin:0;font-style:normal;font:400 15px/1.55 var(--ce-font-body);color:var(--ce-ink-2)}
 
 /* footer */
 footer{border-top:1px solid var(--ce-line);padding-block:28px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;align-items:center;font:500 11px/1.8 var(--ce-font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ce-muted)}
 footer a{color:var(--ce-muted)}
 footer .links{display:flex;gap:22px;flex-wrap:wrap}
-footer address{flex-basis:100%;margin:0;font-style:normal;text-transform:none;letter-spacing:.02em;line-height:1.6}
+footer address{flex-basis:100%;min-width:0;max-width:100%;margin:0;font-style:normal;text-transform:none;letter-spacing:.02em;line-height:1.6}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 /* buttons rendered as <button> */
