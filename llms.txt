@@ -1,0 +1,15 @@
+# Critical Element
+
+> Critical Element is a Grafana Partner and Reseller. We design, build and run Grafana observability stacks: licensing, engineering and support from one partner.
+
+Services: Grafana Cloud licensing and sizing, including Grafana Enterprise for on-premises requirements; design and build of metrics, logs, traces and profiles on the Grafana LGTM Stack (Loki for logs, Grafana for visualization, Tempo for traces, Mimir for metrics); and run and support, including health checks, tuning, upgrades, and training. AI Observability is a separate engagement: Critical Element assesses and implements Grafana AI Observability.
+
+Sales: sales@criticalelement.io. Job applications: hr@criticalelement.io.
+
+Critical Element, 729 Washington Ave N #600, Minneapolis, MN 55401.
+
+## Pages
+
+- [Home](https://criticalelement.io/): Observability that tells you what matters. Licensing, design, engineering, and support from one partner.
+- [AI Observability](https://criticalelement.io/ai-observability/): Put Grafana's AI to work, then see what your AI is doing.
+- [Careers](https://criticalelement.io/careers/): Open roles, remote across the United States. Applications go to hr@criticalelement.io.
