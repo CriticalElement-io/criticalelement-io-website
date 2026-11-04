@@ -8,7 +8,7 @@ The company website for Critical Element, a Grafana Partner and Reseller focused
 
 ## Workflow (non-negotiable)
 
-1. **Branch from `main`.** Never commit to `main` directly. The `main-protection` ruleset rejects direct pushes for everyone except the `repogods` team.
+1. **Branch from `main`.** Never commit to `main` directly. The org-wide `org-main-protection` ruleset rejects direct pushes for everyone except the `repogods` team.
 2. **Run the site locally and test before you push.** `python3 -m http.server 8000` from the repo root. Check desktop (1280px) and phone (375px) at minimum. Open the browser console; there should be no errors.
 3. **Open a pull request.** Describe what changed, why, and what you tested. A human merges.
 4. **After merge, verify the live site.** GitHub Pages publishes in about a minute. Hard-reload; Pages caches files for 10 minutes.
@@ -95,7 +95,7 @@ Both forms POST JSON as `text/plain` (avoids a CORS preflight) to Google Apps Sc
 - No analytics, cookies, or third-party scripts. The site currently sets none and has no privacy policy.
 - Don't rename or move anything under `assets/email/` or `assets/logo/`.
 - Don't commit secrets. There are none in this repo and none are needed; the Apps Script URLs are public by design.
-- Don't change the `main-protection` ruleset without talking to the team: a blocked merge is a blocked deploy. In particular, never turn on **Restrict updates**, **Require approval for unattributed changes** (it flags AI co-authored commits), or a required approval count above 0. Don't add AI apps or bots to its bypass list. `docs/handoff.md` explains why.
+- Don't change the `org-main-protection` ruleset (org settings, applies to every repo but `otel-demo`) without talking to the team: a blocked merge is a blocked deploy. In particular, never turn on **Restrict updates**, **Require approval for unattributed changes** (it flags AI co-authored commits), or a required approval count above 0. Don't add AI apps or bots to its bypass list, and don't add a repo-level ruleset here; one org ruleset is the single source of truth. `docs/handoff.md` explains why.
 
 ## Definition of done for a PR
 
