@@ -21,6 +21,8 @@ If you edited CSS or JavaScript, run `python3 tools/chrome.py --bump` before com
 |---|---|
 | `index.html` | Homepage. Sections: hero, technology strip, services, Grafana partner, open standards, how we work, about, contact. Carries the Organization JSON-LD (name, URL, logo, email, postal address) |
 | `ai-observability/index.html` | AI Observability services page |
+| `quick-start/index.html` | Grafana Cloud Quickstart Package service brief (PDF) |
+| `pricing/index.html` | Services pricing one-pager (PDF) |
 | `careers/index.html`, `careers/<role>/index.html` | Careers index and one page per open role, each with Google Jobs JSON-LD |
 | `signature/index.html` | Internal email-signature generator (noindex) |
 | `404.html`, `robots.txt`, `sitemap.xml`, `CNAME` | Pages plumbing. Add new public pages to the sitemap |

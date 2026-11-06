@@ -282,3 +282,10 @@ body:has(.hc[open]){overflow:hidden}
 .why p{color:var(--ce-ink-2);font-size:15px}
 @media (max-width:900px){.why{grid-template-columns:1fr}}
 .services-link{margin-top:12px;font-size:16px;color:var(--ce-ink-2)}
+
+/* PDF document pages (quick-start, pricing). No chamfer: clip-path on an iframe ancestor blanks the viewer. */
+.doc{padding-bottom:80px}
+.doc-actions{display:flex;gap:12px;flex-wrap:wrap}
+.doc-frame{background:var(--ce-surface);border:1px solid var(--ce-line)}
+.doc-frame iframe{display:block;width:100%;height:min(82vh,1120px);min-height:560px;border:0;background:var(--ce-surface)}
+@media (max-width:760px){.doc{padding-bottom:48px}.doc-frame iframe{height:72vh;min-height:420px}}
