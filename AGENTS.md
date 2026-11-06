@@ -84,6 +84,8 @@ Both forms POST JSON as `text/plain` (avoids a CORS preflight) to Google Apps Sc
 - **Keep the safeguards from the 2026-10-23 security review:** `sheetSafe()` on every user-supplied value written to a Sheet, the `%PDF-` signature check on resumes (browser and script), and the site-wide hourly caps that answer `busy`.
 - Don't add third-party form services, trackers or analytics without a human decision.
 - For local testing, `python3 docs/mock-endpoint.py` stands in for the scripts.
+- **Bot checks live in the scripts, not the browser.** The browser always sends; the script filters (hidden field filled, too fast, rate limits) and logs every filtered submission to the Sheet's **Filtered** tab. The browser treats only `{"ok":true}` as delivered. Never reintroduce a silent client-side "pretend it worked" path.
+- The hidden anti-bot field is `ce_hp`, labelled "Leave this field empty", with `autocomplete="off"` and password-manager ignore attributes. Don't name it anything autofill recognises (`website`, `url`, `company`, `phone`…). Its value is still sent as `website` because the scripts read that key.
 
 ## Careers
 

@@ -15,7 +15,6 @@
   var openedAt = 0;
   var source = '';
   var SALES = 'sales@criticalelement.io';
-  var MIN_HUMAN_MS = 2000;
 
   var copy = {
     eyebrow: dlg.querySelector('.hc-form .eyebrow'),
@@ -107,11 +106,10 @@
     var payload = {
       name: name, email: email, company: company,
       grafana: f.grafana.value, message: f.message.value.trim(),
-      website: f.website.value, source: source, page: location.pathname,
+      website: f.ce_hp.value, source: source, page: location.pathname,
       elapsed: Date.now() - openedAt
     };
-    // Bots: honeypot filled or submitted faster than a person could type. Pretend it worked.
-    if (payload.website || payload.elapsed < MIN_HUMAN_MS) { succeed(); return; }
+    // Bot checks (honeypot, too fast) run in the script, which logs anything it filters out.
 
     var endpoint = (form.getAttribute('data-endpoint') || '').trim();
     if (!endpoint) { fail(payload); return; }
@@ -131,8 +129,9 @@
       if (!res.ok) throw new Error('http ' + res.status);
       return res.text().then(function (t) {
         var j = null;
-        try { j = JSON.parse(t); } catch (_) { /* non-JSON body: treat a 2xx as delivered */ }
-        if (j && j.ok === false) throw new Error(j.error || 'rejected');
+        try { j = JSON.parse(t); } catch (_) { /* a Google error page, not our script */ }
+        // Only the script's own {"ok":true} counts as delivered; anything else gets the email fallback.
+        if (!j || j.ok !== true) throw new Error((j && j.error) || 'unexpected reply');
       });
     }).then(function () { succeed(); }, function () { fail(payload); });
   });

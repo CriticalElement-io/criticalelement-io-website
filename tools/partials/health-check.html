@@ -11,7 +11,7 @@
         <label>Company<input id="hc-company" name="company" type="text" required autocomplete="organization" maxlength="120"></label>
         <label>Grafana today<select id="hc-grafana" name="grafana"><option value="">Choose one (optional)</option><option>Grafana Cloud</option><option>Grafana Enterprise</option><option>Grafana OSS, self-hosted</option><option>Something else</option><option>Not yet</option></select></label>
         <label class="hc-wide">What's not working today? <span>(optional)</span><textarea id="hc-message" name="message" rows="3" maxlength="2000"></textarea></label>
-        <label class="hc-hp" aria-hidden="true">Website<input id="hc-website" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <label class="hc-hp" aria-hidden="true">Leave this field empty<input id="hc-hp" name="ce_hp" type="text" tabindex="-1" autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other"></label>
       </div>
       <p class="hc-error" id="hc-error" role="alert" hidden></p>
       <div class="hc-actions">

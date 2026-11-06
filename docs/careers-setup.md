@@ -26,6 +26,14 @@ Both roles are US-only with no visa sponsorship. The form asks both questions an
 - Sheet safety: values starting with `=`, `+`, `-` or `@` are stored with a leading apostrophe so they stay text. A submitted formula can't run or send candidate data anywhere when someone opens the Sheet.
 - Mail quota: 1,500/day on Workspace. Not a concern.
 
+## "I applied and you never got it"
+
+1. Search the **Applications** tab for their name or email. A row there means the submission arrived; check spam or the hr@ alias if the email is missing.
+2. Search the **Filtered** tab. Every submission the script turns away is logged there with a reason: `honeypot` (the hidden field was filled, usually by a browser or password manager autofilling), `too-fast`, `per-email-limit`, `sitewide-limit`, `missing-fields`, `not-a-pdf`, or `script-error: …`. Rows from real people can be followed up directly. Logging is capped at 60 rows an hour; past that, entries appear only in the execution log.
+3. Open **Extensions → Apps Script → Executions** (the list icon in the left rail). Every POST that reached the script is listed with its time. No execution at the time they tried means the request never left their browser: JavaScript blocked, an extension blocking `script.google.com`, or they applied somewhere else.
+
+Ineligible applicants (outside the US, or needing sponsorship) are never stored, in either tab. The form tells them why on the spot.
+
 ## Adding a role
 
 1. Copy an existing role folder, e.g. `careers/implementation-engineer/` → `careers/new-role/`.

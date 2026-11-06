@@ -53,6 +53,9 @@ Migration checklist: both Apps Script projects were deployed from the company Wo
 16. **Health check endpoint** — The old deployment URL had started returning 404 and visitors were getting the email fallback; the form now points at the active deployment.
 17. **Office address** (Cursor agent via the Grok bot, for Tim) — Address in the homepage Contact section and the site-wide footer; Organization JSON-LD on the homepage; `/llms.txt` for answer-engine optimization.
 18. **Docs: branch protection and security review** — This file and `AGENTS.md` caught up with PRs 12–17 and the first ruleset.
+19. **Docs: org-wide ruleset** — Branch protection moved to the org ruleset `org-main-protection`.
+20. **Quickstart and pricing pages** — `/quick-start/` and `/pricing/`: title, summary and a PDF download each. Started by a Cursor agent for Tim, reworked by Cory to drop the embedded PDF previews; PDFs re-exported by Tim to remove an internal MSA link and align the Quickstart wording.
+21. **No silent drops** (Nov 2026) — A candidate said they applied and nothing arrived. The hidden honeypot field was named `website`, which browsers and password managers can autofill, and the browser then showed "success" without sending anything. Now the field is `ce_hp` with ignore attributes, the browser always sends, the scripts log every filtered submission to a **Filtered** tab with the reason, and only `{"ok":true}` counts as delivered.
 
 ## Decisions and why
 

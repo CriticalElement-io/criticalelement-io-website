@@ -17,7 +17,6 @@
   var native = typeof dlg.showModal === 'function';
   var openedAt = 0;
   var HR = 'hr@criticalelement.io';
-  var MIN_HUMAN_MS = 3000;
   var MAX_RESUME_BYTES = 5 * 1024 * 1024;
 
   function open(role) {
@@ -109,9 +108,9 @@
     var payload = {
       role: f.role.value, name: name, email: email, linkedin: linkedin,
       inUS: inUS.value, sponsorship: sponsorship.value, note: f.note.value.trim(),
-      website: f.website.value, page: location.pathname, elapsed: Date.now() - openedAt
+      website: f.ce_hp.value, page: location.pathname, elapsed: Date.now() - openedAt
     };
-    if (payload.website || payload.elapsed < MIN_HUMAN_MS) { show(done); return; }
+    // Bot checks (honeypot, too fast) run in the script, which logs anything it filters out.
 
     var endpoint = (form.getAttribute('data-endpoint') || '').trim();
     if (!endpoint) { fail(payload); return; }
@@ -136,8 +135,9 @@
         if (!res.ok) throw new Error('http ' + res.status);
         return res.text().then(function (t) {
           var j = null;
-          try { j = JSON.parse(t); } catch (_) { /* non-JSON 2xx: treat as delivered */ }
-          if (j && j.ok === false) throw new Error(j.error || 'rejected');
+          try { j = JSON.parse(t); } catch (_) { /* a Google error page, not our script */ }
+          // Only the script's own {"ok":true} counts as delivered; anything else gets the email fallback.
+          if (!j || j.ok !== true) throw new Error((j && j.error) || 'unexpected reply');
         });
       });
     }).then(function () { show(done); done.querySelector('.btn').focus(); }, function (err) {
