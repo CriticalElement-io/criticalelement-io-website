@@ -13,5 +13,5 @@ Critical Element, 729 Washington Ave N #600, Minneapolis, MN 55401.
 - [Home](https://criticalelement.io/): Observability that tells you what matters. Licensing, design, engineering, and support from one partner.
 - [AI Observability](https://criticalelement.io/ai-observability/): Put Grafana's AI to work, then see what your AI is doing.
 - [Careers](https://criticalelement.io/careers/): Open roles, remote across the United States. Applications go to hr@criticalelement.io.
-- [Grafana Cloud Quickstart Package](https://criticalelement.io/quick-start/): Service brief (version 1.2, November 2026) for the 25-hour and 50-hour packages.
-- [Services pricing](https://criticalelement.io/pricing/): One-pager for Quick Start packages, Resident Solutions Architect allocations, and Custom SOW hourly rates.
+- [Grafana Cloud Quickstart Package](https://criticalelement.io/quick-start/): Service brief for the 25-hour and 50-hour packages, with a PDF download.
+- [Services pricing](https://criticalelement.io/pricing/): Quick Start packages, Resident Solutions Architect allocations, and Custom SOW hourly rates, with a PDF download.
