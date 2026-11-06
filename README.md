@@ -14,6 +14,8 @@ GitHub Pages caches every file for 10 minutes, so a visitor can get new HTML wit
 
 - `index.html` — the homepage
 - `ai-observability/` — AI Observability services page
+- `quick-start/` — Grafana Cloud Quickstart Package service brief (PDF)
+- `pricing/` — services pricing one-pager (PDF)
 - `404.html` — not-found page served by GitHub Pages
 - `assets/css/tokens.css` — design tokens, copied verbatim from the [CE design system](https://github.com/CriticalElement-io/ce-design-system) (`tokens/tokens.css`). Edit it there, then copy here.
 - `assets/css/site.css` — page styles, built on the tokens
