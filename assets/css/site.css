@@ -286,4 +286,3 @@ body:has(.hc[open]){overflow:hidden}
 /* Document pages (quick-start, pricing): title, summary, download link */
 .doc{min-height:calc(100vh - 180px)}
 .doc-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:8px}
-.doc-meta{font:500 11px var(--ce-font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ce-muted)}
