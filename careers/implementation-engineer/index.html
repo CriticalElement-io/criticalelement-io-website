@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=12">
-  <link rel="stylesheet" href="/assets/css/site.css?v=12">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=13">
+  <link rel="stylesheet" href="/assets/css/site.css?v=13">
 </head>
 <body>
 <!-- nav:start -->
@@ -53,7 +53,7 @@
     <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
-<script src="/assets/js/nav.js?v=12" defer></script>
+<script src="/assets/js/nav.js?v=13" defer></script>
 <!-- nav:end -->
 
 <main id="top">
@@ -129,7 +129,7 @@
         <fieldset class="hc-choice"><legend>Are you currently located in the United States?</legend><div class="opts"><label><input type="radio" name="inUS" value="yes" id="apply-us-yes"><span>Yes</span></label><label><input type="radio" name="inUS" value="no" id="apply-us-no"><span>No</span></label></div></fieldset>
         <fieldset class="hc-choice"><legend>Will you now or in the future require visa sponsorship?</legend><div class="opts"><label><input type="radio" name="sponsorship" value="no" id="apply-sp-no"><span>No</span></label><label><input type="radio" name="sponsorship" value="yes" id="apply-sp-yes"><span>Yes</span></label></div></fieldset>
         <label class="hc-wide">Anything you want us to know? <span>(optional)</span><textarea id="apply-note" name="note" rows="3" maxlength="3000"></textarea></label>
-        <label class="hc-hp" aria-hidden="true">Website<input id="apply-website" name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <label class="hc-hp" aria-hidden="true">Leave this field empty<input id="apply-hp" name="ce_hp" type="text" tabindex="-1" autocomplete="off" data-1p-ignore data-lpignore="true" data-form-type="other"></label>
       </div>
       <p class="hc-error" id="apply-error" role="alert" hidden></p>
       <div class="hc-actions">
@@ -151,7 +151,7 @@
     </div>
   </div>
 </dialog>
-<script src="/assets/js/apply.js?v=12" defer></script>
+<script src="/assets/js/apply.js?v=13" defer></script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org/",

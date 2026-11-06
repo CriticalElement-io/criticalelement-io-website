@@ -6,8 +6,10 @@
  */
 
 var SHEET_NAME = 'Requests';
+var FILTERED_SHEET_NAME = 'Filtered';
 var NOTIFY_TO = 'sales@criticalelement.io';
 var MIN_HUMAN_MS = 2000;      // submissions faster than this are treated as bots
+var MAX_FILTERED_LOG_PER_HOUR = 60;
 var MAX_PER_HOUR_PER_EMAIL = 5;
 var MAX_PER_HOUR_SITEWIDE = 30; // past this the visitor gets the email fallback, so floods can't drain the mail quota
 
@@ -16,20 +18,21 @@ function doGet() {
 }
 
 function doPost(e) {
+  var d = {};
   try {
     var raw = (e && e.postData && e.postData.contents) || '{}';
-    var d = JSON.parse(raw);
+    d = JSON.parse(raw);
 
     // Bot filters: honeypot, too-fast, and a soft per-email rate limit. Bots get a 200 so they stop retrying.
-    if (d.website) return ok();
-    if (typeof d.elapsed === 'number' && d.elapsed < MIN_HUMAN_MS) return ok();
+    if (d.website) { logFiltered('honeypot', d); return ok(); }
+    if (typeof d.elapsed === 'number' && d.elapsed < MIN_HUMAN_MS) { logFiltered('too-fast', d); return ok(); }
 
     var name = clean(d.name, 120), email = clean(d.email, 200), company = clean(d.company, 120);
     var grafana = clean(d.grafana, 60), message = clean(d.message, 2000);
     var source = clean(d.source, 40), page = clean(d.page, 200);
-    if (!name || !email || !company || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail('missing');
-    if (overLimit(email)) return ok();
-    if (overSitewideLimit()) return fail('busy');
+    if (!name || !email || !company || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { logFiltered('missing-fields', d); return fail('missing'); }
+    if (overLimit(email)) { logFiltered('per-email-limit', d); return ok(); }
+    if (overSitewideLimit()) { logFiltered('sitewide-limit', d); return fail('busy'); }
 
     var lock = LockService.getScriptLock();
     lock.waitLock(10000);
@@ -64,6 +67,7 @@ function doPost(e) {
     return ok();
   } catch (err) {
     console.error(err);
+    logFiltered('script-error: ' + String(err).slice(0, 120), d);
     return fail('server');
   }
 }
@@ -104,6 +108,31 @@ function clean(v, max) {
 // (shown only in the formula bar), so a submitted =IMPORTXML(...) can't run when someone opens the Sheet.
 function sheetSafe(v) {
   return /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
+}
+
+// Every submission the script turns away gets a row in the Filtered tab, so "I applied and you never got it"
+// can be checked. Capped per hour so a bot flood can't fill the Sheet; console.log still records each one.
+function logFiltered(reason, d) {
+  d = d || {};
+  console.log('filtered: ' + reason);
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'hc:filtered:' + Math.floor(Date.now() / 3600000);
+    var n = Number(cache.get(key) || 0) + 1;
+    cache.put(key, String(n), 3600);
+    if (n > MAX_FILTERED_LOG_PER_HOUR) return;
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(FILTERED_SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(FILTERED_SHEET_NAME);
+      sheet.appendRow(['Timestamp', 'Reason', 'Name', 'Email', 'Page', 'Seconds on form', 'Hidden field value']);
+      sheet.setFrozenRows(1);
+    }
+    var secs = typeof d.elapsed === 'number' ? Math.round(d.elapsed / 100) / 10 : '';
+    sheet.appendRow([new Date(), reason].concat([clean(d.name, 120), clean(d.email, 200), clean(d.page, 200)].map(sheetSafe), [secs, sheetSafe(clean(d.website, 100))]));
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function ok() { return json({ ok: true }); }

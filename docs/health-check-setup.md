@@ -48,6 +48,12 @@ Edit the code in the Apps Script editor, then **Deploy → Manage deployments �
 - Sheet safety: values starting with `=`, `+`, `-` or `@` are stored with a leading apostrophe so they stay text. A submitted formula such as `=IMPORTXML(...)` can't run when someone opens the Sheet. The email shows the text as typed.
 - Apps Script executions take a few seconds. The button shows "Sending…" and the page waits up to 15 seconds before offering the email fallback.
 
+## "I sent a request and nobody replied"
+
+1. Search the **Requests** tab for their name or email. A row there means the submission arrived; check spam or the sales@ alias if the email is missing.
+2. Search the **Filtered** tab. Every submission the script turns away is logged there with a reason: `honeypot` (the hidden field was filled, usually by a browser or password manager autofilling), `too-fast`, `per-email-limit`, `sitewide-limit`, `missing-fields`, or `script-error: …`. Rows from real people can be followed up directly. Logging is capped at 60 rows an hour; past that, entries appear only in the execution log.
+3. Open **Extensions → Apps Script → Executions** (the list icon in the left rail). Every POST that reached the script is listed with its time. No execution at the time they tried means the request never left their browser: JavaScript blocked, an extension blocking `script.google.com`, or they applied somewhere else.
+
 ## Moving to Zapier later
 
 Nothing on the site changes. Zapier's free plan can trigger on **Google Sheets → New Spreadsheet Row**, so point a Zap at the `Requests` tab and route from there (CRM, Slack, whatever comes next). The Apps Script email can stay on or be removed.

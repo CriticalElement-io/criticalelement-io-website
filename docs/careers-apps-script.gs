@@ -7,9 +7,11 @@
  */
 
 var SHEET_NAME = 'Applications';
+var FILTERED_SHEET_NAME = 'Filtered';
 var NOTIFY_TO = 'hr@criticalelement.io';
 var RESUME_FOLDER_NAME = 'Applications - Resumes';
 var MIN_HUMAN_MS = 3000;
+var MAX_FILTERED_LOG_PER_HOUR = 60;
 var MAX_PER_HOUR_PER_EMAIL = 3;
 var MAX_PER_HOUR_SITEWIDE = 20; // past this the visitor gets the email fallback, so floods can't fill Drive or drain the mail quota
 var MAX_RESUME_BYTES = 5 * 1024 * 1024;
@@ -19,27 +21,29 @@ function doGet() {
 }
 
 function doPost(e) {
+  var d = {};
   try {
     var raw = (e && e.postData && e.postData.contents) || '{}';
-    var d = JSON.parse(raw);
+    d = JSON.parse(raw);
 
-    if (d.website) return ok();
-    if (typeof d.elapsed === 'number' && d.elapsed < MIN_HUMAN_MS) return ok();
+    if (d.website) { logFiltered('honeypot', d); return ok(); }
+    if (typeof d.elapsed === 'number' && d.elapsed < MIN_HUMAN_MS) { logFiltered('too-fast', d); return ok(); }
 
     var role = clean(d.role, 120), name = clean(d.name, 120), email = clean(d.email, 200);
     var linkedin = clean(d.linkedin, 300), note = clean(d.note, 3000), page = clean(d.page, 200);
     var inUS = d.inUS === 'yes' ? 'Yes' : 'No';
     var sponsorship = d.sponsorship === 'yes' ? 'Yes' : 'No';
-    if (!role || !name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail('missing');
+    if (!role || !name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { logFiltered('missing-fields', d); return fail('missing'); }
+    // Ineligible applicants are not stored anywhere, including the Filtered tab.
     if (inUS !== 'Yes' || sponsorship !== 'No') return fail('ineligible');
-    if (overLimit(email)) return ok();
+    if (overLimit(email)) { logFiltered('per-email-limit', d); return ok(); }
 
     var resumeBytes = null;
     if (d.resume && d.resume.data) {
       resumeBytes = decodeResume(d.resume.data);
-      if (!resumeBytes) return fail('resume');
+      if (!resumeBytes) { logFiltered('not-a-pdf', d); return fail('resume'); }
     }
-    if (overSitewideLimit()) return fail('busy');
+    if (overSitewideLimit()) { logFiltered('sitewide-limit', d); return fail('busy'); }
 
     var resumeUrl = resumeBytes ? saveResume(resumeBytes, name, role) : '';
 
@@ -77,6 +81,7 @@ function doPost(e) {
     return ok();
   } catch (err) {
     console.error(err);
+    logFiltered('script-error: ' + String(err).slice(0, 120), d);
     return fail('server');
   }
 }
@@ -146,6 +151,31 @@ function clean(v, max) {
 // (shown only in the formula bar), so a submitted =IMPORTXML(...) can't run when someone opens the Sheet.
 function sheetSafe(v) {
   return /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
+}
+
+// Every submission the script turns away gets a row in the Filtered tab, so "I applied and you never got it"
+// can be checked. Capped per hour so a bot flood can't fill the Sheet; console.log still records each one.
+function logFiltered(reason, d) {
+  d = d || {};
+  console.log('filtered: ' + reason);
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'apply:filtered:' + Math.floor(Date.now() / 3600000);
+    var n = Number(cache.get(key) || 0) + 1;
+    cache.put(key, String(n), 3600);
+    if (n > MAX_FILTERED_LOG_PER_HOUR) return;
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(FILTERED_SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(FILTERED_SHEET_NAME);
+      sheet.appendRow(['Timestamp', 'Reason', 'Role', 'Name', 'Email', 'Page', 'Seconds on form', 'Hidden field value']);
+      sheet.setFrozenRows(1);
+    }
+    var secs = typeof d.elapsed === 'number' ? Math.round(d.elapsed / 100) / 10 : '';
+    sheet.appendRow([new Date(), reason].concat([clean(d.role, 120), clean(d.name, 120), clean(d.email, 200), clean(d.page, 200)].map(sheetSafe), [secs, sheetSafe(clean(d.website, 100))]));
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function ok() { return json({ ok: true }); }
